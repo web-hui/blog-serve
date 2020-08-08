@@ -73,13 +73,15 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "lint-staged": {
-    "*.vue": "vue-cli-service lint",
-    "*.js": "eslint",
-    "*.less": "stylelint",
-    "*.css": "stylelint",
-    "*.scss": "stylelint",
-    "*.md": "markdownlint"
+    "*.ts": "eslint",
+    "*.js": "eslint"
   },
   "config": {
     "commitizen": {
