@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql:5.6
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: blogCms
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 123456
+    volumes:
+      - "./docker_volumes/mysql:/var/lib/mysql"
