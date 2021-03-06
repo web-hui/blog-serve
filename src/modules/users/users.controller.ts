@@ -59,10 +59,10 @@ export class userController {
       pageSize: Number(query.pageSize),
       total: count,
     };
-    console.log(query, count);
+    console.log(query, count, user);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...data } = user;
-    return filterReturnData({ data, pagination });
+    // const { password, ...data } = user;
+    return filterReturnData({ data: user, pagination });
   }
 
   @ApiOperation({ summary: '根据token获取用户信息' })

@@ -1,6 +1,6 @@
 const database: any = {
   type: 'mysql',
-  host: 'localhost',
+  host: '172.16.238.16',
   port: 3306,
   username: 'admin',
   password: '123456',

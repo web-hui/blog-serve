@@ -1,0 +1,8 @@
+version: "3"
+services:
+  blog-serve:
+    build: .
+    container_name: blog-serve
+    ports:
+      - 3002:3002
+    restart: always

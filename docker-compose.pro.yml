@@ -1,0 +1,47 @@
+version: "3"
+services:
+  server:
+    container_name: blog-server
+    image: blog-serve_blog-serve:latest
+    restart: always
+    ports:
+      - "3002:3002"
+    links:
+      - mysql
+    networks:
+      app_net:
+        ipv4_address: 172.16.238.15
+    depends_on:
+      - mysql
+  mysql:
+    container_name: blog-mysql
+    image: mysql:5.6
+    ports:
+      - "3306:3306"
+    networks:
+      app_net:
+        ipv4_address: 172.16.238.16
+    command: [
+      "--default-authentication-plugin=mysql_native_password",
+      "--character-set-server=utf8mb4",
+      "--collation-server=utf8mb4_unicode_ci"
+      ]
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: blogCms
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 123456
+    volumes:
+      - "./docker/docker_volumes/mysql:/var/lib/mysql"
+
+networks:
+  app_net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
